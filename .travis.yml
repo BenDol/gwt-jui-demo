@@ -1,13 +1,12 @@
 sudo: false
 language: java
 jdk:
-- oraclejdk8
 - oraclejdk7
 cache:
   directories:
   - $HOME/.m2
 before_install:
-# install the gwtbootstrap3 library before we build the demo
+# install the gwtjui library before we build the demo
 - git clone https://github.com/BenDol/gwt-jui.git
 - cd gwt-jui
 - mvn install -DskipTests=true -DdryRun=true

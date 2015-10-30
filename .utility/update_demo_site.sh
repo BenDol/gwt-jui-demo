@@ -24,7 +24,7 @@ git clone --quiet --branch=gh-pages https://$GH_TOKEN@github.com/BenDol/gwt-jui-
 cd gh-pages
 
 # remove the GwtJuiDemo directories from git.
-if [[ -d ./snapshot/GwtJuiDemo ]]; then
+if [[ -d ./snapshot/gwtjuidemo ]]; then
 git rm -rf ./snapshot/gwtjuidemo
 fi
 if [[ -f ./snapshot/index.html ]]; then
