@@ -1,0 +1,62 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!--
+  ~ Copyright 2015 Doltech Systems Ltd.
+  ~
+  ~ Licensed under the Apache License, Version 2.0 (the "License"); you may not
+  ~ use this file except in compliance with the License. You may obtain a copy of
+  ~ the License at
+  ~
+  ~ http://www.apache.org/licenses/LICENSE-2.0
+  ~
+  ~ Unless required by applicable law or agreed to in writing, software
+  ~ distributed under the License is distributed on an "AS IS" BASIS, WITHOUT
+  ~ WARRANTIES OR CONDITIONS OF ANY KIND, either express or implied. See the
+  ~ License for the specific language governing permissions and limitations under
+  ~ the License.
+  -->
+
+<module rename-to="gwtjuidemo">
+  <inherits name="com.google.gwt.user.User"/>
+  <inherits name="com.google.gwt.uibinder.UiBinder"/>
+  <inherits name="com.google.gwt.inject.Inject"/>
+  <inherits name="com.google.gwt.logging.Logging"/>
+  <inherits name='com.google.gwt.user.UserAgent'/>
+
+  <!-- JQuery Dependencies -->
+  <inherits name="nz.co.doltech.gwtjui.core.JuiDebugWithJQuery" />
+  <inherits name="nz.co.doltech.gwtjui.interactions.JuiInteractionsDebug" />
+  <inherits name="nz.co.doltech.gwtjui.themes.uilightness.UiLightnessDebug" />
+
+  <inherits name="org.gwtbootstrap3.GwtBootstrap3"/>
+  <inherits name="com.gwtplatform.mvp.MvpWithEntryPoint"/>
+
+  <set-property name="user.agent" value="safari"/>
+
+  <set-property name="gwt.logging.logLevel" value="ALL" />
+  <set-property name="gwt.logging.developmentModeHandler" value="ENABLED" />
+
+  <set-property name="compiler.stackMode" value="emulated" />
+  <set-property name="compiler.emulatedStack" value="true"/>
+  <set-property name="compiler.useSourceMaps" value="true" />
+
+  <extend-property name="locale" values="en"/>
+  <set-property-fallback name="locale" value="en"/>
+
+  <set-configuration-property name="compiler.emulatedStack.recordLineNumbers" value="true"/>
+  <set-configuration-property name="compiler.emulatedStack.recordFileNames" value="true"/>
+  <set-configuration-property name="compiler.enum.obfuscate.names" value="false" />
+
+  <set-configuration-property name="CssResource.style" value="pretty"/>
+  <collapse-all-properties />
+
+  <add-linker name="xsiframe"/>
+
+  <inherits name="nz.co.doltech.gwtjui.demo.client.Resources"/>
+
+  <source path="client" />
+
+  <set-configuration-property name="gin.ginjector.modules"
+                              value="nz.co.doltech.gwtjui.demo.client.gin.ClientModule"/>
+
+  <entry-point class="nz.co.doltech.gwtjui.demo.client.DemoEntryPoint"/>
+</module>
