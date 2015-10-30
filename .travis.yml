@@ -12,6 +12,8 @@ before_install:
 - mvn install -DskipTests=true -DdryRun=true
 - cd ..
 install: true
+before_script:
+ - chmod +x .utility/*
 script:
   - mvn clean install -DdryRun=true -Dlicense.failOnMissingHeader=true -Dlicense.failOnNotUptodateHeader=true
 after_success:
