@@ -40,9 +40,7 @@
           <b:NavbarCollapse b:id="navbar-collapse">
             <b:NavbarNav>
               <b:AnchorListItem text="Setup" targetHistoryToken="{nameTokens.getSetup}"/>
-              <b:ListDropDown>
-                <b:AnchorButton dataToggle="BUTTON">Core</b:AnchorButton>
-              </b:ListDropDown>
+              <b:AnchorListItem text="Core" targetHistoryToken="{nameTokens.getCore}" />
               <b:ListDropDown>
                 <b:AnchorButton dataToggle="DROPDOWN">Interactions</b:AnchorButton>
                 <b:DropDownMenu>
@@ -54,22 +52,22 @@
                 </b:DropDownMenu>
               </b:ListDropDown>
               <b:ListDropDown>
-                <b:AnchorButton dataToggle="DROPDOWN">Widgets (In Progress)</b:AnchorButton>
-                <!--b:DropDownMenu>
-                  <b:AnchorListItem targetHistoryToken="{nameTokens.getCarousel}">Carousel</b:AnchorListItem>
-                </b:DropDownMenu-->
+                <b:AnchorButton dataToggle="DROPDOWN">Widgets</b:AnchorButton>
+                <b:DropDownMenu>
+                  <b:AnchorListItem targetHistoryToken="#">In Progress</b:AnchorListItem>
+                </b:DropDownMenu>
               </b:ListDropDown>
               <b:ListDropDown>
-                <b:AnchorButton dataToggle="DROPDOWN">Effects (In Progress)</b:AnchorButton>
-                <!--b:DropDownMenu>
-                  <b:AnchorListItem targetHistoryToken="{nameTokens.getAnimate}">Animate</b:AnchorListItem>
-                </b:DropDownMenu-->
+                <b:AnchorButton dataToggle="DROPDOWN">Effects</b:AnchorButton>
+                <b:DropDownMenu>
+                  <b:AnchorListItem targetHistoryToken="#">In Progress</b:AnchorListItem>
+                </b:DropDownMenu>
               </b:ListDropDown>
               <b:ListDropDown>
                 <b:AnchorButton dataToggle="BUTTON">Themes</b:AnchorButton>
               </b:ListDropDown>
-              <b:AnchorListItem text="Fork on GitHub" href="https://github.com/BenDol"/>
-              <b:AnchorListItem text="View Javadoc" href="apidocs/index.html"/>
+              <b:AnchorListItem text="Fork on GitHub" href="https://github.com/BenDol/gwt-jui"/>
+              <!--b:AnchorListItem text="View Javadoc" href="apidocs/index.html"/-->
             </b:NavbarNav>
           </b:NavbarCollapse>
         </b:Container>

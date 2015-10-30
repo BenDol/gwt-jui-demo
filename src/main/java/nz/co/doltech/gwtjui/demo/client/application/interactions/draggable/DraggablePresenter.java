@@ -25,6 +25,7 @@ import com.gwtplatform.mvp.client.annotations.ProxyCodeSplit;
 import com.gwtplatform.mvp.client.presenter.slots.NestedSlot;
 import com.gwtplatform.mvp.client.proxy.ProxyPlace;
 import nz.co.doltech.gwtjui.demo.client.application.ApplicationPresenter;
+import nz.co.doltech.gwtjui.demo.client.application.interactions.InteractionsPresenter;
 import nz.co.doltech.gwtjui.demo.client.place.NameTokens;
 
 public class DraggablePresenter extends Presenter<DraggablePresenter.MyView, DraggablePresenter.MyProxy>
@@ -39,7 +40,7 @@ public class DraggablePresenter extends Presenter<DraggablePresenter.MyView, Dra
 
     @Inject
     DraggablePresenter(EventBus eventBus, MyView view, MyProxy proxy) {
-        super(eventBus, view, proxy, ApplicationPresenter.TYPE_SetMainContent);
+        super(eventBus, view, proxy, InteractionsPresenter.SLOT_INTERACTIONS);
 
         getView().setUiHandlers(this);
     }

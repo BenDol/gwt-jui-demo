@@ -1,15 +1,16 @@
 body {
     padding-top: 70px;
+    overflow: auto;
 }
 
 pre.prettyprint {
     padding: 9.5px !important;
     border: none !important;
-    margin-bottom: 0px !important;
+    margin-bottom: 0 !important;
 }
 
 .page-header {
-    margin-top: 0px !important;
+    margin-top: 0 !important;
 }
 
 /* Styles for Affix/sidebar shamelessly copied from http://getbootstrap.com/assets/css/docs.css */

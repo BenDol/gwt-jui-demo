@@ -23,6 +23,7 @@ import com.gwtplatform.mvp.client.View;
 import com.gwtplatform.mvp.client.annotations.NameToken;
 import com.gwtplatform.mvp.client.annotations.ProxyCodeSplit;
 import com.gwtplatform.mvp.client.proxy.ProxyPlace;
+import nz.co.doltech.gwtjui.demo.client.application.ApplicationPresenter;
 import nz.co.doltech.gwtjui.demo.client.place.NameTokens;
 
 public class HomePresenter extends Presenter<HomePresenter.MyView, HomePresenter.MyProxy> implements HomeUiHandlers {
@@ -36,7 +37,7 @@ public class HomePresenter extends Presenter<HomePresenter.MyView, HomePresenter
 
     @Inject
     HomePresenter(EventBus eventBus, MyView view, MyProxy proxy) {
-        super(eventBus, view, proxy, RevealType.Root);
+        super(eventBus, view, proxy, ApplicationPresenter.TYPE_SetMainContent);
 
         getView().setUiHandlers(this);
     }

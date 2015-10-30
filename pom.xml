@@ -79,13 +79,13 @@
         <dependency>
             <groupId>com.gwtplatform</groupId>
             <artifactId>gwtp-mvp-client</artifactId>
-            <version>1.5</version>
+            <version>1.5.1</version>
             <scope>provided</scope>
         </dependency>
         <dependency>
             <groupId>com.gwtplatform</groupId>
             <artifactId>gwtp-mvp-shared</artifactId>
-            <version>1.5</version>
+            <version>1.5.1</version>
             <scope>compile</scope>
         </dependency>
 

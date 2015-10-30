@@ -15,7 +15,7 @@
   ~ the License.
   -->
 <module>
-    <public path='resource'>
+    <public path='resources'>
         <include name='css/*.css'/>
         <include name='js/*.js'/>
     </public>

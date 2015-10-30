@@ -21,15 +21,6 @@
              xmlns:b.gwt="urn:import:org.gwtbootstrap3.client.ui.gwt"
              xmlns:d="urn:import:nz.co.doltech.gwtjui.demo.client.ui">
   <ui:style>
-    .danger {
-      background-color: #fcf2f2;
-      border-color: #dFb5b4;
-    }
-
-    .margin-fix {
-      margin-top: 0 !important;
-    }
-
     .spacing {
       margin-left: 5px;
     }
@@ -39,11 +30,10 @@
     .sortable li { margin: 3px 3px 3px 0; padding: 1px; float: left; width: 100px; height: 90px; font-size: 4em; text-align: center; }
   </ui:style>
 
-  <b:Row>
-    <b:Column size="XS_12">
+  <g:HTMLPanel>
+    <b:PageHeader ui:field="header" text="Sortable"/>
 
-      <b:PageHeader text="Sortable"/>
-
+    <g:FocusPanel ui:field="focus">
       <b:BlockQuote>
         <b.html:Strong>Original Library Link:</b.html:Strong>
         <b:Anchor target="_blank" addStyleNames="{style.spacing}"
@@ -51,33 +41,59 @@
         <b.html:Br/>
         <b.html:Strong>Current Version Supported: 1.11.4</b.html:Strong>
       </b:BlockQuote>
+    </g:FocusPanel>
 
-      <b:Panel>
-        <b:PanelHeader>
-          <b:Heading size="H3" text="Using Sortable"/>
-        </b:PanelHeader>
-        <b:PanelBody>
-          <b.gwt:HTMLPanel ui:field="list" b:id="sortable" addStyleNames="{style.sortable}">
-            <li class="ui-state-default">1</li>
-            <li class="ui-state-default">2</li>
-            <li class="ui-state-default">3</li>
-            <li class="ui-state-default">4</li>
-            <li class="ui-state-default">5</li>
-            <li class="ui-state-default">6</li>
-            <li class="ui-state-default">7</li>
-            <li class="ui-state-default">8</li>
-            <li class="ui-state-default">9</li>
-            <li class="ui-state-default">10</li>
-            <li class="ui-state-default">11</li>
-            <li class="ui-state-default">12</li>
-          </b.gwt:HTMLPanel>
-        </b:PanelBody>
-        <b:PanelFooter>
-
-        </b:PanelFooter>
-      </b:Panel>
-
-    </b:Column>
-  </b:Row>
+    <b:Panel>
+      <b:PanelHeader>
+        <b:Heading size="H3" text="Sortable Grid Example"/>
+      </b:PanelHeader>
+      <b:PanelBody>
+        <b.gwt:HTMLPanel ui:field="list" b:id="sortable" addStyleNames="{style.sortable}">
+          <li class="ui-state-default">1</li>
+          <li class="ui-state-default">2</li>
+          <li class="ui-state-default">3</li>
+          <li class="ui-state-default">4</li>
+          <li class="ui-state-default">5</li>
+          <li class="ui-state-default">6</li>
+          <li class="ui-state-default">7</li>
+          <li class="ui-state-default">8</li>
+          <li class="ui-state-default">9</li>
+          <li class="ui-state-default">10</li>
+          <li class="ui-state-default">11</li>
+          <li class="ui-state-default">12</li>
+        </b.gwt:HTMLPanel>
+      </b:PanelBody>
+      <b:PanelFooter>
+        <d:PrettyPre addStyleNames="lang-xml">
+          &lt;!-- UiBinder --&gt;\n\n
+          &lt;b.gwt:HTMLPanel ui:field="list" b:id="sortable"&gt;\n
+          \s\s&lt;li class="ui-state-default"&gt;1&lt;/li&gt;\n
+          \s\s&lt;li class="ui-state-default"&gt;2&lt;/li&gt;\n
+          \s\s&lt;li class="ui-state-default"&gt;3&lt;/li&gt;\n
+          \s\s&lt;li class="ui-state-default"&gt;4&lt;/li&gt;\n
+          \s\s&lt;li class="ui-state-default"&gt;5&lt;/li&gt;\n
+          \s\s&lt;li class="ui-state-default"&gt;6&lt;/li&gt;\n
+          \s\s&lt;li class="ui-state-default"&gt;7&lt;/li&gt;\n
+          \s\s&lt;li class="ui-state-default"&gt;8&lt;/li&gt;\n
+          \s\s&lt;li class="ui-state-default"&gt;9&lt;/li&gt;\n
+          \s\s&lt;li class="ui-state-default"&gt;10&lt;/li&gt;\n
+          \s\s&lt;li class="ui-state-default"&gt;11&lt;/li&gt;\n
+          \s\s&lt;li class="ui-state-default"&gt;12&lt;/li&gt;\n
+          &lt;/b.gwt:HTMLPanel&gt;
+        </d:PrettyPre>
+        <d:PrettyPre addStyleNames="lang-java">
+          /* Java */\n\n
+          @UiField HTMLPanel list;\n\n
+          public MyView() {\n
+          \s\sinitWidget(uiBinder.createAndBindUi(this));\n\n
+          \s\sSortable sortable = new Sortable(list);\n\n
+          \s\s// Optional Settings\n
+          \s\ssortable.setTolerance(Sortable.Tolerance.POINTER);\n
+          \s\s...\n
+          }
+        </d:PrettyPre>
+      </b:PanelFooter>
+    </b:Panel>
+  </g:HTMLPanel>
 
 </ui:UiBinder>

@@ -15,11 +15,16 @@
  */
 package nz.co.doltech.gwtjui.demo.client.application.interactions.selectable;
 
+import com.google.gwt.core.client.Scheduler;
 import com.google.gwt.uibinder.client.UiBinder;
 import com.google.gwt.uibinder.client.UiField;
+import com.google.gwt.user.client.Command;
+import com.google.gwt.user.client.ui.FocusPanel;
 import com.google.gwt.user.client.ui.SimplePanel;
 import com.google.gwt.user.client.ui.Widget;
 import com.gwtplatform.mvp.client.ViewWithUiHandlers;
+import nz.co.doltech.gwtjui.interactions.client.ui.Selectable;
+import org.gwtbootstrap3.client.ui.html.OrderedList;
 
 import javax.inject.Inject;
 
@@ -27,8 +32,28 @@ public class SelectableView extends ViewWithUiHandlers<SelectableUiHandlers> imp
     interface Binder extends UiBinder<Widget, SelectableView> {
     }
 
+    @UiField OrderedList list;
+    @UiField FocusPanel focus;
+
+    private Selectable selectable;
+
     @Inject
     SelectableView(Binder uiBinder) {
         initWidget(uiBinder.createAndBindUi(this));
+
+        selectable = new Selectable(list);
+    }
+
+    @Override
+    protected void onAttach() {
+        super.onAttach();
+
+        Scheduler.get().scheduleDeferred(new Command() {
+            @Override
+            public void execute() {
+                focus.setFocus(true);
+                focus.setFocus(false);
+            }
+        });
     }
 }

@@ -24,6 +24,7 @@ import com.gwtplatform.mvp.client.annotations.NameToken;
 import com.gwtplatform.mvp.client.annotations.ProxyCodeSplit;
 import com.gwtplatform.mvp.client.proxy.ProxyPlace;
 import nz.co.doltech.gwtjui.demo.client.application.ApplicationPresenter;
+import nz.co.doltech.gwtjui.demo.client.application.interactions.InteractionsPresenter;
 import nz.co.doltech.gwtjui.demo.client.place.NameTokens;
 
 public class SortablePresenter extends Presenter<SortablePresenter.MyView, SortablePresenter.MyProxy>
@@ -38,7 +39,7 @@ public class SortablePresenter extends Presenter<SortablePresenter.MyView, Sorta
 
     @Inject
     SortablePresenter(EventBus eventBus, MyView view, MyProxy proxy) {
-        super(eventBus, view, proxy, ApplicationPresenter.TYPE_SetMainContent);
+        super(eventBus, view, proxy, InteractionsPresenter.SLOT_INTERACTIONS);
 
         getView().setUiHandlers(this);
     }

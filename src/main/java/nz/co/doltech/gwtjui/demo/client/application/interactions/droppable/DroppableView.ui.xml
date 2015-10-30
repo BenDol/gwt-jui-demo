@@ -15,8 +15,251 @@
   -->
 <!DOCTYPE ui:UiBinder SYSTEM "http://dl.google.com/gwt/DTD/xhtml.ent">
 <ui:UiBinder xmlns:ui="urn:ui:com.google.gwt.uibinder"
-             xmlns:g="urn:import:com.google.gwt.user.client.ui">
-    <g:HTMLPanel>
+             xmlns:g="urn:import:com.google.gwt.user.client.ui"
+             xmlns:b="urn:import:org.gwtbootstrap3.client.ui"
+             xmlns:b.html="urn:import:org.gwtbootstrap3.client.ui.html"
+             xmlns:b.gwt="urn:import:org.gwtbootstrap3.client.ui.gwt"
+             xmlns:d="urn:import:nz.co.doltech.gwtjui.demo.client.ui"
+             xmlns:i="urn:import:nz.co.doltech.gwtjui.interactions.client.ui">
+  <ui:style>
+    .spacing {
+      margin-left: 5px;
+    }
 
-    </g:HTMLPanel>
+    #draggable, #draggable-nonvalid { width: 100px; height: 80px; padding: 0.5em; float: left; margin: 10px 10px 10px 0; }
+    #draggable2 { width: 100px; height: 40px; padding: 0.5em; float: left; margin: 10px 10px 10px 0; }
+    #droppable, #droppable2 { width: 230px; height: 120px; padding: 0.5em; float: left; margin: 10px; }
+    #droppable-inner, #droppable2-inner { width: 170px; height: 60px; padding: 0.5em; margin: 10px; }
+  </ui:style>
+
+  <g:HTMLPanel>
+    <b:PageHeader ui:field="header" text="Droppable"/>
+
+    <g:FocusPanel ui:field="focus">
+      <b:BlockQuote>
+        <b.html:Strong>Original Library Link:</b.html:Strong>
+        <b:Anchor target="_blank" addStyleNames="{style.spacing}"
+                  href="http://api.jqueryui.com/droppable/">Droppable API</b:Anchor>
+        <b.html:Br/>
+        <b.html:Strong>Current Version Supported: 1.11.4</b.html:Strong>
+      </b:BlockQuote>
+    </g:FocusPanel>
+
+    <b:Panel>
+      <b:PanelHeader>
+        <b:Heading size="H3" text="Default Functionality"/>
+      </b:PanelHeader>
+      <b:PanelBody ui:field="container" height="250px">
+        <i:Draggable ui:field="draggable">
+          <b.gwt:HTMLPanel b:id="draggable" addStyleNames="ui-widget-content">
+            <p>Drag me to my target</p>
+          </b.gwt:HTMLPanel>
+        </i:Draggable>
+        <i:Droppable ui:field="droppable">
+          <b.gwt:HTMLPanel b:id="droppable" addStyleNames="ui-widget-header">
+            <p>Drop here</p>
+          </b.gwt:HTMLPanel>
+        </i:Droppable>
+      </b:PanelBody>
+      <b:PanelFooter>
+        <d:PrettyPre addStyleNames="lang-xml">
+          &lt;!-- UiBinder --&gt;\n\n
+          &lt;i:Draggable ui:field="draggable"&gt;\n
+          \s\s&lt;b.gwt:HTMLPanel ui:field="draggableBox" b:id="draggable"&gt;\n
+          \s\s\s\s&lt;p&gt;Drag me to my target&lt;/p&gt;\n
+          \s\s&lt;/b.gwt:HTMLPanel&gt;\n
+          &lt;/i:Draggable&gt;\n\n
+          &lt;i:Droppable ui:field="droppable"&gt;\n
+          \s\s&lt;b.gwt:HTMLPanel ui:field="droppableBox" b:id="droppable"&gt;\n
+          \s\s\s\s&lt;p&gt;Drop here&lt;/p&gt;\n
+          \s\s&lt;/b.gwt:HTMLPanel&gt;\n
+          &lt;/i:Droppable&gt;\n
+        </d:PrettyPre>
+        <d:PrettyPre addStyleNames="lang-java">
+          /* Java */\n\n
+          @UiField PanelBody container;\n
+          @UiField HTMLPanel draggableBox;\n
+          @UiField HTMLPanel droppableBox;\n
+          @UiField Droppable droppable;\n
+          @UiField Draggable draggable;\n\n
+          @Override\n
+          protected void onAttach() {\n
+          \s\sdraggable.setContainment(new Containment(container));\n\n
+          \s\sdroppable.addDropHandler(new DropHandler&lt;Droppable, DroppableHash&gt;() {\n
+          \s\s\s\s@Override\n
+          \s\s\s\spublic void onDrop(DropEvent&lt;Droppable, DroppableHash&gt; event) {\n
+          \s\s\s\s\s\sJuiQuery.$(event.getSource())\n
+          \s\s\s\s\s\s\s\s.addClass("ui-state-highlight")\n
+          \s\s\s\s\s\s\s\s.find("p")\n
+          \s\s\s\s\s\s\s\s.html("Dropped!");\n
+          \s\s\s\s}\n
+          \s\s});\n
+          }
+        </d:PrettyPre>
+      </b:PanelFooter>
+    </b:Panel>
+
+    <b:Panel>
+      <b:PanelHeader>
+        <b:Heading size="H3" text="Accept"/>
+      </b:PanelHeader>
+      <b:PanelBody ui:field="container2" height="250px">
+        <i:Draggable ui:field="draggable2">
+          <b.gwt:HTMLPanel b:id="draggable" addStyleNames="ui-widget-content">
+            <p>Drag me to my target</p>
+          </b.gwt:HTMLPanel>
+        </i:Draggable>
+        <i:Draggable ui:field="draggable3">
+          <b.gwt:HTMLPanel b:id="draggable-nonvalid" addStyleNames="ui-widget-content">
+            <p>Drag me - Not accepted</p>
+          </b.gwt:HTMLPanel>
+        </i:Draggable>
+        <i:Droppable ui:field="droppable2">
+          <b.gwt:HTMLPanel b:id="droppable" addStyleNames="ui-widget-header">
+            <p>accept: '#draggable'</p>
+          </b.gwt:HTMLPanel>
+        </i:Droppable>
+      </b:PanelBody>
+      <b:PanelFooter>
+        <d:PrettyPre addStyleNames="lang-java">
+          /* Java */\n\n
+          @Override\n
+          protected void onAttach() {\n
+          \s\sdraggable.setContainment(new Containment(container));\n\n
+          \s\sdroppable.setAccept(new Accept("#draggable"));\n
+          \s\sdroppable.setActiveClass("ui-state-hover");\n
+          \s\sdroppable.setHoverClass("ui-state-active");\n
+          \s\sdroppable.addDropHandler(new DropHandler&lt;Droppable, DroppableHash&gt;() {\n
+          \s\s\s\s@Override\n
+          \s\s\s\spublic void onDrop(DropEvent&lt;Droppable, DroppableHash&gt; event) {\n
+          \s\s\s\s\s\sJuiQuery.$(event.getSource())\n
+          \s\s\s\s\s\s\s\s.addClass("ui-state-highlight")\n
+          \s\s\s\s\s\s\s\s.find("p")\n
+          \s\s\s\s\s\s\s\s.html("Dropped!");\n
+          \s\s\s\s}\n
+          \s\s});\n
+          }
+        </d:PrettyPre>
+      </b:PanelFooter>
+    </b:Panel>
+
+    <b:Panel>
+      <b:PanelHeader>
+        <b:Heading size="H3" text="Stop Propagation"/>
+      </b:PanelHeader>
+      <b:PanelBody ui:field="container3">
+        <i:Draggable ui:field="draggable4">
+          <b.gwt:HTMLPanel b:id="draggable2" addStyleNames="ui-widget-content">
+            <p>Drag me!</p>
+          </b.gwt:HTMLPanel>
+        </i:Draggable>
+
+        <i:Droppable ui:field="droppable3" activeClass="ui-state-hover" hoverClass="ui-state-active">
+          <b.gwt:HTMLPanel b:id="droppable" addStyleNames="ui-widget-header">
+            <p>Outer droppable</p>
+            <i:Droppable ui:field="droppable4" activeClass="ui-state-hover" hoverClass="ui-state-active">
+              <b.gwt:HTMLPanel b:id="droppable-inner" addStyleNames="ui-widget-header">
+                <p>Inner droppable (not greedy)</p>
+              </b.gwt:HTMLPanel>
+            </i:Droppable>
+          </b.gwt:HTMLPanel>
+        </i:Droppable>
+
+        <i:Droppable ui:field="droppable5" activeClass="ui-state-hover" hoverClass="ui-state-active">
+          <b.gwt:HTMLPanel b:id="droppable2" addStyleNames="ui-widget-header">
+            <p>Outer droppable</p>
+            <i:Droppable ui:field="droppable6" greedy="true" activeClass="ui-state-hover" hoverClass="ui-state-active">
+              <b.gwt:HTMLPanel b:id="droppable2-inner" addStyleNames="ui-widget-header">
+                <p>Inner droppable (greedy)</p>
+              </b.gwt:HTMLPanel>
+            </i:Droppable>
+          </b.gwt:HTMLPanel>
+        </i:Droppable>
+      </b:PanelBody>
+      <b:PanelFooter>
+        <d:PrettyPre addStyleNames="lang-xml">
+          &lt;!-- UiBinder --&gt;\n\n
+          &lt;i:Droppable ui:field="droppable" activeClass="ui-state-hover" hoverClass="ui-state-active"&gt;\n
+          \s\s&lt;b.gwt:HTMLPanel b:id="droppable"&gt;\n
+          \s\s\s\s&lt;p&lt;Outer droppable&lt;/p&gt;\n
+          \s\s\s\s&lt;i:Droppable ui:field="droppable2" greedy="true" activeClass="ui-state-hover" hoverClass="ui-state-active"&gt;\n
+          \s\s\s\s\s\s&lt;b.gwt:HTMLPanel b:id="droppable-inner"&gt;\n
+          \s\s\s\s\s\s\s\s&lt;p&gt;Inner droppable (greedy)&lt;/p&gt;\n
+          \s\s\s\s\s\s&lt;/b.gwt:HTMLPanel&gt;\n
+          \s\s\s\s&lt;/i:Droppable&gt;\n
+          \s\s&lt;/b.gwt:HTMLPanel&gt;\n
+          &lt;/i:Droppable&gt;
+        </d:PrettyPre>
+        <d:PrettyPre addStyleNames="lang-java">
+          /* Java */\n\n
+          DropHandler&lt;Droppable, DroppableHash&gt; dropStopHandler =\n
+          \s\s\s\snew DropHandler&lt;Droppable, DroppableHash&gt;() {\n
+          \s\s@Override\n
+          \s\spublic void onDrop(DropEvent&lt;Droppable, DroppableHash&gt; event) {\n
+          \s\s\s\sJuiQuery.$(event.getSource())\n
+          \s\s\s\s\s\s.addClass("ui-state-highlight")\n
+          \s\s\s\s\s\s.find("> p")\n
+          \s\s\s\s\s\s.html("Dropped!");\n
+          \s\s\s\sevent.getNativeEvent().stopPropagation();\n
+          \s\s}\n
+          };
+        </d:PrettyPre>
+      </b:PanelFooter>
+    </b:Panel>
+
+    <b:Panel>
+      <b:PanelHeader>
+        <b:Heading size="H3" text="Revert Draggable Position"/>
+      </b:PanelHeader>
+      <b:PanelBody ui:field="container4">
+        <i:Draggable ui:field="draggable5">
+          <b.gwt:HTMLPanel b:id="draggable" addStyleNames="ui-widget-content">
+            <p>I revert when I'm dropped</p>
+          </b.gwt:HTMLPanel>
+        </i:Draggable>
+
+        <i:Draggable ui:field="draggable6">
+          <b.gwt:HTMLPanel b:id="draggable" addStyleNames="ui-widget-content">
+            <p>I revert when I'm not dropped</p>
+          </b.gwt:HTMLPanel>
+        </i:Draggable>
+
+        <i:Droppable ui:field="droppable7" activeClass="ui-state-hover" hoverClass="ui-state-active">
+          <b.gwt:HTMLPanel b:id="droppable" addStyleNames="ui-widget-header">
+            <p>Droppable here</p>
+          </b.gwt:HTMLPanel>
+        </i:Droppable>
+      </b:PanelBody>
+      <b:PanelFooter>
+        <d:PrettyPre addStyleNames="lang-xml">
+          &lt;!-- UiBinder --&gt;\n\n
+          &lt;i:Droppable ui:field="droppable" activeClass="ui-state-hover" hoverClass="ui-state-active"&gt;\n
+          \s\s&lt;b.gwt:HTMLPanel b:id="droppable"&gt;\n
+          \s\s\s\s&lt;p&lt;Outer droppable&lt;/p&gt;\n
+          \s\s\s\s&lt;i:Droppable ui:field="droppable2" greedy="true" activeClass="ui-state-hover" hoverClass="ui-state-active"&gt;\n
+          \s\s\s\s\s\s&lt;b.gwt:HTMLPanel b:id="droppable-inner"&gt;\n
+          \s\s\s\s\s\s\s\s&lt;p&gt;Inner droppable (greedy)&lt;/p&gt;\n
+          \s\s\s\s\s\s&lt;/b.gwt:HTMLPanel&gt;\n
+          \s\s\s\s&lt;/i:Droppable&gt;\n
+          \s\s&lt;/b.gwt:HTMLPanel&gt;\n
+          &lt;/i:Droppable&gt;
+        </d:PrettyPre>
+        <d:PrettyPre addStyleNames="lang-java">
+          /* Java */\n\n
+          DropHandler&lt;Droppable, DroppableHash&gt; dropStopHandler =\n
+          \s\s\s\snew DropHandler&lt;Droppable, DroppableHash&gt;() {\n
+          \s\s@Override\n
+          \s\spublic void onDrop(DropEvent&lt;Droppable, DroppableHash&gt; event) {\n
+          \s\s\s\sJuiQuery.$(event.getSource())\n
+          \s\s\s\s\s\s.addClass("ui-state-highlight")\n
+          \s\s\s\s\s\s.find("> p")\n
+          \s\s\s\s\s\s.html("Dropped!");\n
+          \s\s\s\sevent.getNativeEvent().stopPropagation();\n
+          \s\s}\n
+          };
+        </d:PrettyPre>
+      </b:PanelFooter>
+    </b:Panel>
+  </g:HTMLPanel>
+
 </ui:UiBinder>

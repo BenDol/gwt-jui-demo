@@ -16,8 +16,12 @@
 package nz.co.doltech.gwtjui.demo.client.application.interactions.sortable;
 
 import com.google.gwt.core.client.GWT;
+import com.google.gwt.core.client.Scheduler;
+import com.google.gwt.event.logical.shared.AttachEvent;
 import com.google.gwt.uibinder.client.UiBinder;
 import com.google.gwt.uibinder.client.UiField;
+import com.google.gwt.user.client.Command;
+import com.google.gwt.user.client.ui.FocusPanel;
 import com.google.gwt.user.client.ui.HTMLPanel;
 import com.google.gwt.user.client.ui.Widget;
 import com.gwtplatform.mvp.client.ViewWithUiHandlers;
@@ -33,6 +37,7 @@ import nz.co.doltech.gwtjui.interactions.client.events.SortEvent;
 import nz.co.doltech.gwtjui.interactions.client.events.SortHandler;
 import nz.co.doltech.gwtjui.interactions.client.events.hash.SortableHash;
 import nz.co.doltech.gwtjui.interactions.client.ui.Sortable;
+import org.gwtbootstrap3.client.ui.PageHeader;
 
 import javax.inject.Inject;
 
@@ -43,19 +48,28 @@ public class SortableView extends ViewWithUiHandlers<SortableUiHandlers> impleme
     }
 
     @UiField HTMLPanel list;
+    @UiField FocusPanel focus;
 
     private Sortable sortable;
 
     @Inject
     SortableView(Binder uiBinder) {
         initWidget(uiBinder.createAndBindUi(this));
+
+        sortable = new Sortable(list);
     }
 
     @Override
     protected void onAttach() {
         super.onAttach();
 
-        sortable = new Sortable(list);
+        Scheduler.get().scheduleDeferred(new Command() {
+            @Override
+            public void execute() {
+                focus.setFocus(true);
+                focus.setFocus(false);
+            }
+        });
 
         sortable.addOverHandler(new OverHandler<Sortable, SortableHash>() {
             @Override
@@ -63,6 +77,8 @@ public class SortableView extends ViewWithUiHandlers<SortableUiHandlers> impleme
                 GWT.log("onOver: " + event.getHash().getPos());
             }
         });
+
+        sortable.setTolerance(Sortable.Tolerance.POINTER);
 
         sortable.addSortHandler(new SortHandler<Sortable, SortableHash>() {
             @Override
