@@ -29,3 +29,5 @@ www-test/
 
 .idea/
 */**/target/
+target/*
+gwt-jui-demo.iml
